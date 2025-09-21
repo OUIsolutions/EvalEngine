@@ -24,7 +24,7 @@ for i =1,#sources do
         all_files[#all_files+1] = sources[i]
     end 
     if dtw.isdir(sources[i]) then
-        local files = dtw.list_files_recursively(sources[i])
+        local files = dtw.list_files_recursively(sources[i],true)
         for j=1,#files do
             all_files[#all_files+1] = files[j]
         end
@@ -33,5 +33,7 @@ end
 
 for i=1,#all_files do
     local current = all_files[i]
-    print("Evaluating file: "..current) 
+    local path = dtw.newPlath(current)
+    filename = path.get_file_name()
+    print("Processing file: "..filename)
 end 
