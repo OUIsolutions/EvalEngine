@@ -13,6 +13,13 @@ if total_sources == 0 then
   print("No --sources specified")
   return
 end
+local args = argv.get_flag_size({ "args"})
+local args_cmd = ""
+for i=1,args do
+    local arg = argv.get_flag_arg_by_index({ "args" },i)
+    args_cmd = args_cmd.." "..arg
+end
+
 local sources = {}
 for i=1,total_sources do
     local src = argv.get_flag_arg_by_index({ "sources","src" },i)
@@ -33,7 +40,11 @@ end
 
 for i=1,#all_files do
     local current = all_files[i]
-    local path = dtw.newPlath(current)
-    filename = path.get_file_name()
-    print("Processing file: "..filename)
+    local path = dtw.newPath(current)
+    filename = path.get_name()
+    if  dtw.starts_with(filename,starstwith) then
+        local dir = path.get_dir()
+        local command= "cd "..dir.." && "..runtime.." "..filename ..args_cmd
+        print("Running: "..command)
+    end
 end 
