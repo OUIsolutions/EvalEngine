@@ -45,6 +45,7 @@ for i=1,#all_files do
     if  dtw.starts_with(filename,starstwith) then
         local dir = path.get_dir()
         local command= "cd "..dir.." && "..runtime.." "..filename ..args_cmd
-        print("Running: "..command)
+        print("[INFO]Running: "..command)
+        os.execute(command)
     end
 end 
