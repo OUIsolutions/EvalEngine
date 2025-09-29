@@ -3,7 +3,7 @@ if not runtime then
   print("No --runtime specified")
   return
 end
-local starstwith = argv.get_flag_arg_by_index({ "starstwith" },1)
+local starstwith = argv.get_flag_arg_by_index({ "startswith" },1)
 if not starstwith then
   print("No --starstwith specified")
   return
