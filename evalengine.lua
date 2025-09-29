@@ -32,7 +32,7 @@ if not delay then
     return
 end
 
-
+while true do 
 local all_files = {}
 for i =1,#sources do
     if dtw.isfile(sources[i]) then
@@ -56,8 +56,10 @@ for i=1,#all_files do
         print("[INFO]Running: "..command)
         os.execute(command)
     end
+end 
     if delay > 0 then
         print("[INFO]Waiting "..delay.." seconds")
         os.execute("sleep "..delay)
     end
+    
 end 
