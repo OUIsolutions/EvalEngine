@@ -25,6 +25,14 @@ for i=1,total_sources do
     local src = argv.get_flag_arg_by_index({ "sources","src" },i)
     sources[#sources+1] = src
 end
+local delay = argv.get_flag_arg_by_index({ "delay" },1) or "0"
+delay = tonumber(delay)
+if not delay then
+    print("--delay must be a number")
+    return
+end
+
+
 local all_files = {}
 for i =1,#sources do
     if dtw.isfile(sources[i]) then
@@ -47,5 +55,9 @@ for i=1,#all_files do
         local command= "cd "..dir.." && "..runtime.." "..filename ..args_cmd
         print("[INFO]Running: "..command)
         os.execute(command)
+    end
+    if delay > 0 then
+        print("[INFO]Waiting "..delay.." seconds")
+        os.execute("sleep "..delay)
     end
 end 
