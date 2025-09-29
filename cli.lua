@@ -1,16 +1,16 @@
 local runtime = argv.get_flag_arg_by_index({ "runtime" },1)
 if not runtime then
-  print("No --runtime specified")
+  print("\27[31m❌ No --runtime specified\27[0m")
   return
 end
 local starstwith = argv.get_flag_arg_by_index({ "startswith" },1)
 if not starstwith then
-  print("No --starstwith specified")
+  print("\27[31m❌ No --startswith specified\27[0m")
   return
 end
 local total_sources = argv.get_flag_size({ "sources","src"})
 if total_sources == 0 then
-  print("No --sources specified")
+  print("\27[31m❌ No --sources specified\27[0m")
   return
 end
 local args = argv.get_flag_size({ "args"})
@@ -28,7 +28,7 @@ end
 local delay = argv.get_flag_arg_by_index({ "delay" },1) or "0"
 delay = tonumber(delay)
 if not delay then
-    print("--delay must be a number")
+    print("\27[31m❌ --delay must be a number\27[0m")
     return
 end
 
@@ -53,12 +53,12 @@ for i=1,#all_files do
     if  dtw.starts_with(filename,starstwith) then
         local dir = path.get_dir()
         local command= "cd "..dir.." && "..runtime.." "..filename ..args_cmd
-        print("[INFO]Running: "..command)
+        print("\27[32m🚀 [INFO] Running: \27[36m"..command.."\27[0m")
         os.execute(command)
     end
 end 
     if delay > 0 then
-        print("[INFO]Waiting "..delay.." seconds")
+        print("\27[33m⏰ [INFO] Waiting \27[35m"..delay.."\27[33m seconds...\27[0m")
         os.execute("sleep "..delay)
     end
 
