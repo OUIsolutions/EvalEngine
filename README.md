@@ -17,7 +17,7 @@ curl -L https://github.com/OUIsolutions/VibeScript/releases/download/0.35.0/amal
 
 ### Step 2: Install EvalEngine 
 ```bash
-vibescript add_script --file  doc_join
+vibescript add_script --file https://github.com/OUIsolutions/EvalEngine/releases/download/0.1.0/cli.lua  evalengine
 ```
 
 
